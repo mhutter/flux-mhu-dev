@@ -1,0 +1,23 @@
+---
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: flux
+  namespace: flux
+  annotations:
+    flux.weave.works/automated: 'true'
+spec:
+  releaseName: flux
+  chart:
+    repository: https://weaveworks.github.io/flux
+    name: flux
+    version: 0.9.4
+  values:
+    image:
+      repository: docker.io/weaveworks/flux
+      tag: 1.12.3
+    git:
+      url: git@github.com:mhutter/flux-hnetes.git
+    helmOperator:
+      create: true
+      createCRD: false
